@@ -7,41 +7,60 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textEstados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Estados"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:id="@+id/textEstados"/>
+        app:layout_constraintVertical_bias="0.034" />
 
     <Button
+        android:id="@+id/btnConectar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:text="Conectar"
-        android:id="@+id/btnConectar"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textEstados"
+        tools:layout_editor_absoluteX="144dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnImprimir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnConectar"
+        android:layout_marginTop="8dp"
         android:text="Imprimir"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="62dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btnConectar"
+        tools:layout_editor_absoluteX="148dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnDesconectar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnImprimir"
+        android:layout_marginTop="8dp"
         android:text="Desconectar"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="139dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btnImprimir"
+        tools:layout_editor_absoluteX="131dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/btntodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Hacer todo"
+        app:layout_constraintTop_toBottomOf="@+id/btnDesconectar"
+        tools:layout_editor_absoluteX="131dp"
+        tools:ignore="MissingConstraints"
+        android:background="@android:color/holo_blue_dark"/>
 
 
 

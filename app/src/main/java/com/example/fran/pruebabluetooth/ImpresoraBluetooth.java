@@ -45,14 +45,15 @@ public class ImpresoraBluetooth  {
 
     public void connectar() throws Exception {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        final String PrinterBsid = "00:19:0E:A2:EF:0A";
         try {
             if (!bluetoothAdapter.isEnabled()) {
-
-                Intent intent = new Intent(activity, MainActivity.class);
-                //Intent intent = new Intent(activity, activity.getClass());
+                //Intent intent = new Intent(activity, MainActivity.class);
+                Intent intent = new Intent(activity, activity.getClass());
                 Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 activity.startActivityForResult(enableBluetooth, 0);
             }
+
 
             Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
 
@@ -64,7 +65,7 @@ public class ImpresoraBluetooth  {
                     }
                 }
 
-                UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
+                UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); //Standard SerialPortService ID
                 //Method m = bluetoothDevice.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
                 socket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
                // socket = (BluetoothSocket) m.invoke(bluetoothDevice, 1);
@@ -73,15 +74,39 @@ public class ImpresoraBluetooth  {
                 outputStream = socket.getOutputStream();
                 inputStream = socket.getInputStream();
                 //beginListenForData();
+                System.out.println("Bluetooth Conectado");
             } else {
-                System.out.println("Dispositivo Bluetooth no encontrado");
-                Toast.makeText(activity, "Dispositivo Bluetooth no encontrado", Toast.LENGTH_SHORT).show();
-
+                System.out.println("Dispositivo Bluetooth no encontrado sin catch");
             }
         } catch (Exception ex) {
             System.out.println("Dispositivo Bluetooth no encontrado");
         }
 
+    }
+
+    public void desconectar() throws Exception {
+        try {
+            stopWorker = true;
+            outputStream.close();
+            inputStream.close();
+            socket.close();
+            System.out.println("Bluetooth Closed");
+        } catch (Exception e) {
+            System.out.println("Error Bluetooth Closed");
+            e.printStackTrace();
+        }
+    }
+
+    public void imprimir() throws Exception {
+        try {
+
+
+
+            outputStream.write(this.data.getBytes());
+            System.out.println("Imprimiendo");
+        } catch (Exception ex){
+            System.out.println("Error al imprimir");
+        }
     }
 
 }
